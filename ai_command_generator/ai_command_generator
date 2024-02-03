@@ -11,7 +11,7 @@ fi
 TEXT_TO_CLEAN="$1"
 
 # Define the prompt in a variable
-PROMPT="Generate a bash command from the following text."
+PROMPT="Generate a bash command from the following text. Only return the command. Not formatting or explanation."
 
 # API Endpoint for OpenAI Chat (hardcoded)
 API_ENDPOINT='https://api.openai.com/v1/chat/completions'
