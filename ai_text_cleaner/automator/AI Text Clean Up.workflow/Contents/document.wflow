@@ -59,7 +59,7 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-					<string>$HOME/git/nrgapple/scripts/ai_text_cleaner/ai_text_cleaner "$@"</string>
+					<string>$HOME/git/scripts/ai_text_cleaner/ai_text_cleaner "$@"</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
 					<key>inputMethod</key>
