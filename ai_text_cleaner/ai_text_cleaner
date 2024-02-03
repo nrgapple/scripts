@@ -1,0 +1,33 @@
+#!/bin/bash
+
+PATH=$PATH:/usr/local/bin
+
+# Load .env file
+if [ -f "$(dirname "$0")/.env" ]; then
+    export $(cat "$(dirname "$0")/.env" | xargs)
+fi
+
+# Text to be cleaned up, passed as an argument
+TEXT_TO_CLEAN="$1"
+
+# Define the prompt in a variable
+PROMPT="You are a helpful assistant. Your task is to correct any grammatical errors, improve sentence structure, and fix spelling mistakes in the following text."
+
+# API Endpoint for OpenAI Chat (hardcoded)
+API_ENDPOINT='https://api.openai.com/v1/chat/completions'
+
+# Prepare the data for the API request
+DATA=$(jq -n \
+    --arg content "$TEXT_TO_CLEAN" \
+    --arg prompt "$PROMPT" \
+    '{model: "gpt-3.5-turbo", messages: [{role: "system", content: $prompt}, {role: "user", content: $content}]}')
+
+# Make the API request and get the response
+RESPONSE=$(curl -s \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer $OPENAI_API_KEY" \
+    -d "$DATA" \
+    "$API_ENDPOINT")
+
+# Extract and return the cleaned text (adjust based on actual API response structure)
+echo "$RESPONSE" | jq -r '.choices[0].message.content'
