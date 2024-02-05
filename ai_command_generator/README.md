@@ -1,5 +1,14 @@
 # ChatGPT command generator cli
 
+## Usage
+
+Run the `ai_command_generator` command to generate a command. You can pass a prompt as an argument to the command. For example:
+
+```bash
+➜ aicmd "find all files with passwords in them"
+find . -type f -name '*.txt' -exec grep -i 'password' {} +
+```
+
 ## Installation
 
 Put the `ai_command_generator` folder somewhere.
@@ -27,12 +36,3 @@ alias aicmd='ai_command_generator'
 ```
 
 Now you can use the `aicmd` command to generate commands.
-
-## Usage
-
-Run the `ai_command_generator` command to generate a command. You can pass a prompt as an argument to the command. For example:
-
-```bash
-> aicmd "find all files in the ~/BuiltSource folder and down with the word BUILT_API in it"
-find ~/BuiltSource -type f -name "*BUILT_API*"
-```
